@@ -1,0 +1,35 @@
+version: "3"
+
+services:
+  one:
+    container_name: one
+    image: nginx:alpine
+    ports:
+      - 8001:80
+    networks:
+      - numbers
+    extra_hosts:
+      - "three:${IP}"
+    environment:
+      - PUID=${PUID}
+      - PGID=${PUID}
+#    env_file:
+#      - id.env
+#  two:
+#    container_name: two
+#    image: nginx:alpine
+#    ports:
+#      - 8002:80
+#    networks:
+#      - numbers
+#    extra_hosts:
+#      - "three:10.37.116.96"
+#  three:
+#    container_name: three 
+#    image: nginx:alpine
+#    ports:
+#      - 8003:80
+#    network_mode: "host"
+
+networks:
+  numbers:

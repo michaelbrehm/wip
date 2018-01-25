@@ -1,0 +1,17 @@
+#!/bin/bash
+
+
+# Create the id.env file with id and group
+#tee ./id.env <<- EOF > /dev/null
+#tee ./id.env <<- EOF
+#	PUID=$(id -u `whoami`)
+#	PGID=$(id -g `whoami`)
+#EOF
+
+#tee ./ip.env <<- EOF > /dev/null
+tee ./.env <<- EOF
+	IP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+	PUID=$(id -u `whoami`)
+	PGID=$(id -g `whoami`)
+EOF
+
